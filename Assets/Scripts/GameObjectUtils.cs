@@ -6,32 +6,32 @@ namespace TEDCore.Utils
 	{
 		public static GameObject FindChild(this GameObject root, string name)
 		{
-			GameObject temp = null;
+			GameObject tempObject = null;
 			Transform transformCache = root.transform;
 			int childCount = root.transform.childCount;
 			int cnt = 0;
 
 			for(cnt = 0; cnt < childCount; cnt++)
 			{
-				temp = transformCache.GetChild(cnt).gameObject;
+				tempObject = transformCache.GetChild(cnt).gameObject;
 
-				if(name == temp.name)
+				if(name == tempObject.name)
 				{
-					return temp;
+					return tempObject;
 				}
 			}
 
 			for(cnt = 0; cnt < childCount; cnt++)
 			{
-				temp = transformCache.GetChild(cnt).gameObject;
+				tempObject = transformCache.GetChild(cnt).gameObject;
 
-				if(transformCache.childCount > 0)
+				if(tempObject.transform.childCount > 0)
 				{
-					temp = temp.FindChild(name);
+					tempObject = tempObject.FindChild(name);
 
-					if(null != temp)
+					if(null != tempObject)
 					{
-						return temp;
+						return tempObject;
 					}
 				}
 			}
